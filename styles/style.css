@@ -911,107 +911,133 @@ h1 {
     color: white;
 }
 
-/* REGLAS MÓVILES (992px) */
+/* ========================================= */
+/* === RESPONSIVE PROFESIONAL (MÓVIL) === */
+/* ========================================= */
 @media (max-width: 992px) {
-
-    /* 1. Botón visible */
+    
+    /* 1. BOTÓN HAMBURGUESA (Más estilizado) */
     .menu-toggle {
         display: flex;
+        z-index: 2000; /* Asegura que esté SIEMPRE encima del menú */
     }
 
-    /* 2. Sidebar Oculta */
+    /* 2. SIDEBAR (Ahora es PANTALLA COMPLETA) */
     .sidebar {
-        width: 260px;
-        left: -100%;
-        /* Fuera de pantalla */
-        background: rgba(0, 0, 0, 0.98);
-        /* Fondo sólido */
-        backdrop-filter: blur(10px);
-        box-shadow: 5px 0 15px rgba(0, 0, 0, 0.5);
+        width: 100%; /* Ocupa todo el ancho */
+        height: 100vh;
+        left: -100%; /* Oculto arriba o izquierda */
+        
+        /* Centrado perfecto de todo el contenido */
+        display: flex;
+        flex-direction: column;
+        justify-content: center; /* Centrado Vertical */
+        align-items: center;     /* Centrado Horizontal */
+        
+        background-color: var(--bg-color); /* Fondo negro puro */
+        z-index: 1500; /* Encima del contenido, debajo del botón */
+        
+        /* Animación suave */
+        transition: all 0.5s cubic-bezier(0.77, 0.2, 0.05, 1.0);
+        opacity: 0; /* Empieza invisible */
     }
 
+    /* ESTADO ACTIVO (Cuando se abre) */
     .sidebar.active {
         left: 0;
+        opacity: 1;
     }
 
-    /* Entra */
-
-    .logo-area span,
-    .nav-links a,
-    .sidebar-footer p {
-        display: block;
+    /* 3. LOGO EN EL MENÚ */
+    .logo-area {
+        margin-bottom: 40px;
+        transform: scale(1.2); /* Logo más grande */
     }
+    .logo-area span, .sidebar-footer p { display: block; text-align: center; }
 
+    /* 4. ENLACES (Grandes y Centrados) */
+    .nav-links {
+        width: 100%;
+        text-align: center;
+    }
     .nav-links li {
-        text-align: left;
+        margin-bottom: 20px;
+        text-align: center;
     }
-
     .nav-links a {
-        font-size: 1.1rem;
-        padding: 15px;
+        font-size: 2rem; /* TEXTO GIGANTE */
+        font-weight: 800; /* Letra gruesa */
+        padding: 10px;
+        display: inline-block;
+    }
+    /* Efecto al tocar un enlace en móvil */
+    .nav-links a:hover, .nav-links a.active {
+        background: transparent; /* Quitamos el fondo cuadrado */
+        color: var(--accent); /* Solo letras rojas */
+        border: none;
+        transform: scale(1.1); /* Crece un poco */
     }
 
-    /* 3. Ajuste Contenido (OCUPA TODO EL ANCHO) */
+    /* 5. REDES SOCIALES (Abajo del todo) */
+    .sidebar-footer {
+        margin-top: 40px;
+        text-align: center;
+    }
+    .social-mini a {
+        font-size: 1.8rem;
+        margin: 0 15px; /* Más separados */
+    }
+
+    /* 6. AJUSTE DEL CONTENIDO DE LA PÁGINA */
     .main-content {
         margin-left: 0;
         width: 100%;
-        padding-top: 60px;
+        padding-top: 0; /* Quitamos padding extra */
+    }
+    
+    .section { padding: 80px 20px; } /* Más espacio interno */
+    
+    .split-layout { 
+        flex-direction: column-reverse; 
+        text-align: center; 
+        gap: 30px;
+    }
+    
+    /* Títulos en móvil */
+    h1 { font-size: 3rem; line-height: 1.1; }
+    .hero-desc { font-size: 1rem; margin: 0 auto 30px auto; }
+    
+    /* Foto principal */
+    .hero-image { 
+        justify-content: center; 
+        margin-bottom: 30px; 
+    }
+    .img-frame {
+        width: 280px; /* Un poco más pequeña en móvil */
+        height: 350px;
     }
 
-    .section {
-        padding: 60px 20px;
-    }
-
-    .split-layout {
-        flex-direction: column-reverse;
-        text-align: center;
-    }
-
-    h1 {
-        font-size: 2.5rem;
-    }
-
-    .hero-image {
-        justify-content: center;
-        margin-bottom: 40px;
-    }
-
-    .hero-btns {
-        justify-content: center;
+    .hero-btns { 
+        justify-content: center; 
+        flex-wrap: wrap; /* Si no caben, bajan */
     }
 
     /* Ajuste Timeline */
-    .timeline {
-        margin-left: 0;
-        padding-left: 20px;
-    }
+    .timeline { margin-left: 0; padding-left: 15px; }
+    .timeline::before { left: 15px; }
+    .timeline-dot { left: 7px; }
+    .timeline-item { padding-left: 35px; }
 
-    .timeline::before {
-        left: 20px;
-    }
+    /* Ajuste Stack Proyectos */
+    .proyecto-preview-stack { width: 90%; }
 
-    .timeline-dot {
-        left: 12px;
+    /* Botón volver */
+    .btn-back { 
+        top: 20px; left: 20px; 
+        width: 45px; height: 45px; 
+        padding: 0; justify-content: center; 
+        border-radius: 50%; font-size: 0; 
+        background: rgba(0,0,0,0.8);
     }
-
-    .timeline-item {
-        padding-left: 40px;
-    }
-
-    /* Ajuste Botón Volver */
-    .btn-back {
-        top: 20px;
-        left: 20px;
-        padding: 10px;
-        width: 45px;
-        height: 45px;
-        justify-content: center;
-        border-radius: 50%;
-        font-size: 0;
-    }
-
-    .btn-back i {
-        margin: 0;
-        font-size: 1.2rem;
-    }
+    .btn-back i { margin: 0; font-size: 1.2rem; }
 }

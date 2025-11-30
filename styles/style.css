@@ -881,15 +881,15 @@ h1 {
 }
 
 /* ========================================= */
-/* === BOTÓN HAMBURGUESA (MÓVIL) === */
+/* === BOTÓN HAMBURGUESA Y RESPONSIVE === */
 /* ========================================= */
+
 .menu-toggle {
-    display: flex;
+    display: none;
     /* Oculto en PC */
     position: fixed;
     top: 20px;
     right: 20px;
-    /* Arriba a la derecha */
     z-index: 1001;
     /* Encima de todo */
     background: var(--card-bg);
@@ -911,12 +911,10 @@ h1 {
     color: white;
 }
 
-/* ========================================= */
-/* === RESPONSIVE FINAL (El único que necesitas) === */
-/* ========================================= */
+/* REGLAS MÓVILES (992px) */
 @media (max-width: 992px) {
 
-    /* 1. Menú Hamburguesa visible */
+    /* 1. Botón visible */
     .menu-toggle {
         display: flex;
     }
@@ -926,7 +924,8 @@ h1 {
         width: 260px;
         left: -100%;
         /* Fuera de pantalla */
-        background: rgba(0, 0, 0, 0.95);
+        background: rgba(0, 0, 0, 0.98);
+        /* Fondo sólido */
         backdrop-filter: blur(10px);
         box-shadow: 5px 0 15px rgba(0, 0, 0, 0.5);
     }
@@ -935,7 +934,7 @@ h1 {
         left: 0;
     }
 
-    /* Entra al activarse */
+    /* Entra */
 
     .logo-area span,
     .nav-links a,
@@ -952,7 +951,7 @@ h1 {
         padding: 15px;
     }
 
-    /* 3. Ajuste Contenido */
+    /* 3. Ajuste Contenido (OCUPA TODO EL ANCHO) */
     .main-content {
         margin-left: 0;
         width: 100%;
@@ -999,7 +998,7 @@ h1 {
         padding-left: 40px;
     }
 
-    /* Botón volver móvil */
+    /* Ajuste Botón Volver */
     .btn-back {
         top: 20px;
         left: 20px;

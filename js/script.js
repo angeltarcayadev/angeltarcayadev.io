@@ -172,4 +172,52 @@ document.addEventListener("DOMContentLoaded", () => {
         projectsObserver.observe(projectsSection);
     }
 
+    /* --- 6. MENÚ HAMBURGUESA (MÓVIL) --- */
+    const menuToggle = document.getElementById('mobile-menu');
+    const sidebar = document.getElementById('sidebar');
+    const navLinksItems = document.querySelectorAll('.nav-links a');
+
+    // 1. Abrir / Cerrar al tocar el botón
+    if (menuToggle) {
+        menuToggle.addEventListener('click', () => {
+            sidebar.classList.toggle('active');
+            
+            // Cambiar icono (de hamburguesa a X)
+            const icon = menuToggle.querySelector('i');
+            if (sidebar.classList.contains('active')) {
+                icon.classList.remove('fa-bars');
+                icon.classList.add('fa-times');
+            } else {
+                icon.classList.remove('fa-times');
+                icon.classList.add('fa-bars');
+            }
+        });
+    }
+
+    // 2. Cerrar menú al tocar un enlace
+    navLinksItems.forEach(link => {
+        link.addEventListener('click', () => {
+            // Solo si estamos en móvil (si el sidebar tiene la clase active)
+            if (sidebar.classList.contains('active')) {
+                sidebar.classList.remove('active');
+                // Restaurar icono
+                const icon = menuToggle.querySelector('i');
+                icon.classList.remove('fa-times');
+                icon.classList.add('fa-bars');
+            }
+        });
+    });
+
+    // 3. Cerrar al tocar fuera del menú (Opcional pero recomendado)
+    document.addEventListener('click', (e) => {
+        if (sidebar.classList.contains('active') && 
+            !sidebar.contains(e.target) && 
+            !menuToggle.contains(e.target)) {
+            
+            sidebar.classList.remove('active');
+            const icon = menuToggle.querySelector('i');
+            icon.classList.remove('fa-times');
+            icon.classList.add('fa-bars');
+        }
+    });
 });

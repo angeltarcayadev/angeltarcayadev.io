@@ -880,35 +880,136 @@ h1 {
     /* Se mueve un poquito a la izquierda */
 }
 
-/* Ajuste para móviles para que no tape contenido */
-@media (max-width: 768px) {
+/* === ESTILOS DEL BOTÓN HAMBURGUESA === */
+.menu-toggle {
+    display: none;
+    /* Oculto en PC */
+    position: fixed;
+    top: 20px;
+    right: 20px;
+    /* A la derecha para fácil acceso */
+    z-index: 1001;
+    /* Encima de todo */
+    background: var(--card-bg);
+    /* Fondo oscuro */
+    color: var(--accent);
+    /* Icono Rojo */
+    border: 1px solid var(--accent);
+    width: 45px;
+    height: 45px;
+    border-radius: 50%;
+    /* Redondo */
+    align-items: center;
+    justify-content: center;
+    font-size: 1.5rem;
+    cursor: pointer;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+    transition: 0.3s;
+}
+
+.menu-toggle:hover {
+    background: var(--accent);
+    color: white;
+}
+
+/* === RESPONSIVE (MÓVIL Y TABLET) === */
+@media (max-width: 992px) {
+
+    /* 1. MOSTRAR EL BOTÓN HAMBURGUESA */
+    .menu-toggle {
+        display: flex;
+        /* Ahora sí se ve */
+    }
+
+    /* 2. OCULTAR LA SIDEBAR POR DEFECTO */
+    .sidebar {
+        width: 260px;
+        /* Ancho completo del menú */
+        left: -100%;
+        /* LO SACAMOS DE LA PANTALLA A LA IZQUIERDA */
+        background: rgba(0, 0, 0, 0.95);
+        /* Fondo casi negro sólido */
+        backdrop-filter: blur(10px);
+        transition: 0.4s ease;
+        /* Animación suave al entrar */
+        box-shadow: 5px 0 15px rgba(0, 0, 0, 0.5);
+    }
+
+    /* CLASE ACTIVA (Cuando JS la active, el menú entra) */
+    .sidebar.active {
+        left: 0;
+        /* Vuelve a la pantalla */
+    }
+
+    /* Restaurar los elementos que ocultamos antes */
+    .logo-area span,
+    .nav-links a,
+    .sidebar-footer p {
+        display: block;
+        /* Que se vean los textos dentro del menú móvil */
+    }
+
+    .nav-links li {
+        text-align: left;
+    }
+
+    .nav-links a {
+        font-size: 1.1rem;
+        padding: 15px;
+    }
+
+    /* 3. AJUSTAR EL CONTENIDO PRINCIPAL */
+    .main-content {
+        margin-left: 0;
+        /* Ya no deja espacio a la izquierda */
+        width: 100%;
+        padding-top: 60px;
+        /* Espacio arriba para que no se pegue al techo */
+    }
+
+    /* Ajustes generales del diseño en móvil */
+    .section {
+        padding: 60px 20px;
+    }
+
+    .split-layout {
+        flex-direction: column-reverse;
+        text-align: center;
+    }
+
+    h1 {
+        font-size: 2.5rem;
+    }
+
+    /* Título más pequeño */
+
+    .hero-image {
+        justify-content: center;
+        margin-bottom: 40px;
+    }
+
+    /* Ajuste de la línea de tiempo en móvil */
+    .timeline {
+        margin-left: 0;
+        padding-left: 20px;
+    }
+
+    .timeline::before {
+        left: 20px;
+    }
+
+    .timeline-dot {
+        left: 12px;
+    }
+
+    /* Ajuste geométrico para móvil */
+    .timeline-item {
+        padding-left: 40px;
+    }
+
+    /* Ajuste de los botones flotantes */
     .btn-back {
         top: 20px;
         left: 20px;
-        padding: 10px 15px;
-        font-size: 0.8rem;
-    }
-
-    /* En móvil ocultamos el texto "Volver" y dejamos solo la flecha para ahorrar espacio */
-    .btn-back {
-        width: 45px;
-        height: 45px;
-        padding: 0;
-        justify-content: center;
-        border-radius: 50%;
-    }
-
-    .btn-back i {
-        margin: 0;
-    }
-
-    /* Ocultar el texto solo en móvil */
-    .btn-back {
-        font-size: 0;
-    }
-
-    .btn-back i {
-        font-size: 1.2rem;
-        /* Restaurar tamaño de icono */
     }
 }
